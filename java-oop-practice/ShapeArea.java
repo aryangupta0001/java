@@ -9,7 +9,6 @@ Extend to Circle and Rectangle and override area() appropriately.
 
 class Shape {
     void area() {
-        return;
     }
 }
 
@@ -35,7 +34,7 @@ class Rectangle extends Shape {
     }
 
     void area() {
-        System.out.println("Area Of Circle : " + length * breadth);
+        System.out.println("Area Of Rectangle : " + length * breadth);
     }
 }
 
