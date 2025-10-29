@@ -1,3 +1,12 @@
+/*
+3️⃣ Employee Salary
+
+🧩 Concept: Inheritance
+⚙️ Create a base class Employee (name, salary).
+Extend it to Manager (adds bonus). Calculate total salary.
+💡 Hint: Use super to call parent constructor.
+*/
+
 class Employee {
     String name;
     int salary;
@@ -29,7 +38,7 @@ class Manager extends Employee {
 
     }
 
-    void printManagerDetails(){
+    void printManagerDetails() {
         System.out.println(super.name);
         System.out.println(super.salary);
 
