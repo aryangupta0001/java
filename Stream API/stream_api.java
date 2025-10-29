@@ -48,8 +48,20 @@ public class stream_api {
  * Suppose we create our custom Functional Interface --->
  */
 
+import java.lang.reflect.Array;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.BiPredicate;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 @FunctionalInterface
 interface Calculate {
@@ -190,7 +202,7 @@ interface Calculate {
 
  /*
   * Function Interface :-
-  Function is a functional Interface in Java having an abstract method [apply()] which is used to define a method / function that can accept arguments, andreturn the reult when executed.
+  Function is a functional Interface in Java having an abstract method [apply()] which is used to define a method / function that can accept arguments, and return the reult when executed.
 
   apart from the absttract [appply()] method, Function interface has some Concrete Methods too :-
 
@@ -200,21 +212,171 @@ interface Calculate {
   
   */
 
+  /*
 
 public class stream_api {
 
     public static void main(String[] args) {
-        Function <Integer, Integer> doubleIt = x -> 2*x;
+        Function <Double, Double> doubleIt = x -> 2*x;
         Function <Integer, String> toString = x -> String.valueOf(x);
-        Function <Integer, Double> thrice = x -> x / 3.0;
+        Function <Double, Double> thrice = x -> x / 3.0;
 
 
 
-        System.out.println("5 * 2 = " + doubleIt.apply(3));
-        System.out.println("Thrice of 4 : " + thrice.apply(4));
+        System.out.println("5 * 2 = " + doubleIt.apply(3.0));
+        System.out.println("Thrice of 4 : " + thrice.apply(4.0));
         System.out.println("1234 too String = " + toString.apply(1234));
 
-        System.out.println(doubleIt.andThen(thrice).apply(4));
+        System.out.println(doubleIt.andThen(thrice).apply(4.0));
+
+
+        // .andThen is used to run another function just after the current one.
+        // .compose is used to run the second function before the first function, i.e the execution is done in reverse order.
+
+        // Conclusion --->
+        // fn1.andThen(fn2) === fn2.compose(fn1)
+
+
+        var ans1 = doubleIt.andThen(thrice).apply(4.0);
+
+        var ans2 = thrice.andThen(doubleIt).apply(12.0);
+        var ans3 = doubleIt.compose(thrice).apply(12.0);
+
+        // ans2 & ans3 are same.
+
+        System.out.println(ans1);
+        System.out.println(ans2);
+        System.out.println(ans3);
+    }
+}
+
+*/
+
+
+/*
+ * 
+ * Producer Interface --->
+ * 
+ * Producer is a functional interface in Java that has an abstract method [accept()] which takes an argument but does not returns any thing, i.e void.
+ * 
+ * Other than .accept, there is one concrete method in Producer, .andThen() that is used to execute one Consumer after another one.
+ */
+
+ /*
+
+ public class stream_api {
+ 
+    public static void main(String[] args) {
+        Consumer <Integer> print = x -> System.out.println(x);
+        print.accept(2);
+
+        Consumer <List<Integer>> printAllElements = x -> {
+            for(int i : x)
+                System.out.println(i);
+        };
+
+        List <Integer> list = Arrays.asList(1, 3, 5, 7, 9, 11);
+        printAllElements.accept(list);
+    }
+ }
+
+ */
+
+/*
+ * Supplier Interface --->
+ * 
+ * Supplier is a functional Interface that has an abstract methods [.get()] which takes no arguments, but is used to return some value.
+ * Supplier has no concrete method, i.e there is onlyone method ni Supplier interface, get.
+ * 
+ */
+
+ /*
+
+public class stream_api {
+
+    public static void main(String[] args) {
+        Supplier <LocalDate> getDate = () -> LocalDate.now();
+        System.out.println(getDate.get());
+
+        Supplier <LocalDateTime> getDateTime = () -> LocalDateTime.now();
+        System.out.println(getDateTime.get());
+    }
+}
+
+*/
+
+
+
+/*
+ * 
+ * Bi-Predicate, Bi-Consumer, Bi-Function
+ * These 3 Functional Interfaces take 2 arguments as Inputs.
+ */
+
+
+ /*
+public class stream_api {
+    public static void main(String[] args) {
+        BiPredicate <Integer, Integer> evenSum = (a, b) -> (a+b) % 2 == 0; 
+        System.out.println("Sum of 4 & 28 is Even ? " + evenSum.test(4, 28));
+
+        BiConsumer <Integer, Integer> printSum = (a, b) -> System.out.println(a + b);
+        printSum.accept(2, 3);
+
+        BiFunction <String, String, Integer> getConcatenatedLength = (a, b) -> (a+b).length();
+        System.out.println("Length of Aryan Gupta is : " + getConcatenatedLength.apply("Aryan ", "Gupta"));
+
+        List<String> names = Arrays.asList("Aryan", "Arush", "Arvind");
+        names.forEach(x -> System.out.println(x));
+
+        // Method References could also be passed inplace of Lambda Expression.
+        names.forEach(System.out::println);
+
 
     }
+}
+
+*/
+
+
+public class stream_api {
+    public static void main(String[] args) {
+
+        // How to make a Streame :-
+
+        // 1. From collections, using .stream() --->
+        List <Integer> l1 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+        Stream <Integer> s1 = l1.stream();
+
+
+        // From Arrays --->
+        String[] fruits = {"apple", "banana", "grapes"};
+
+        Stream <String> s2 = Arrays.stream(fruits);
+
+
+
+        // Directly using Stream.of() --->
+        Stream <String> s3 = Stream.of("A", "B", "C");
+        Stream <Integer> s4 = Stream.of(1, 2, 3, 4);
+
+
+
+        // Creating Infinite Streams --->
+
+        // 1. using .generate() :-
+
+        // .generate() method takes a supplier as argument & creates a stream of the values given by the supplier
+
+        Stream <Integer> s5 =  Stream.generate(() -> 1);                // This will create an infinite stream of 1, we can also use .limit method to limit the no. of elements
+        Stream <Integer> s6 =  Stream.generate(() -> 1).limit(30);
+
+
+
+
+        System.out.println(s1.filter(x -> x%2 == 0).count());
+
+
+
+    }    
 }
