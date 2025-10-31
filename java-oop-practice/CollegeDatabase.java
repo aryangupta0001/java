@@ -1,3 +1,12 @@
+/*
+8️⃣ College Database
+
+🧩 Concept: Composition (Has-A relationship)
+⚙️ A College has multiple Student objects.
+Write a program to display college name and all student details.
+💡 Hint: Use an array or ArrayList<Student> as a field in College.
+*/
+
 import java.util.ArrayList;
 
 class Student {
@@ -41,12 +50,12 @@ class College {
         students.add(S);
     }
 
-    void displayDetails(){
+    void displayDetails() {
         System.out.println("College Name : " + this.name);
 
         System.out.println("Stud e nts Details :\n");
 
-        for(Student s : students){
+        for (Student s : students) {
             System.out.println("Name : " + s.name);
             System.out.println("Course : " + s.course);
             System.out.println("Roll No. : " + s.roll_no);

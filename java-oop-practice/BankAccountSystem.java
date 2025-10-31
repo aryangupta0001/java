@@ -1,3 +1,14 @@
+/*
+6️⃣ Bank Account System
+
+🧩 Concept: Encapsulation
+⚙️ Class BankAccount with private fields: accountNumber, balance.
+Add methods: deposit(), withdraw(), and checkBalance().
+💡 Hint: Use getters/setters and validate balance before withdrawal.
+
+*/
+
+
 class BankAccount {
     private long account_num;
     private long balance;

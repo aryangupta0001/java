@@ -1,3 +1,12 @@
+/*
+5️⃣ Counter of Objects
+
+🧩 Concept: Static Keyword
+⚙️ Create a class Counter that keeps track of how many objects have been created.
+💡 Hint: Use a static variable that increments inside the constructor.
+
+*/
+
 class Test {
     static int counter = 0;
 
@@ -18,7 +27,7 @@ public class objectCounter {
         // or
 
         // for (int i = 0; i < 10; i++) {
-        //     obj[i] = new Test();
+        // obj[i] = new Test();
         // }
 
         System.out.println(Test.counter);
