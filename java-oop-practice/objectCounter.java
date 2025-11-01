@@ -18,7 +18,7 @@ class Test {
 public class objectCounter {
     public static void main(String[] args) {
 
-        Test[] obj = new Test[20];
+        // Test[] obj = new Test[20];
 
         for (int i = 0; i < 10; i++) {
             Test objects = new Test();
