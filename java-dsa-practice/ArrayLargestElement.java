@@ -13,6 +13,7 @@ public class ArrayLargestElement {
                 max = arr[i];
         }
 
+        Sc.close();
         System.out.println(max);
     }    
 }
