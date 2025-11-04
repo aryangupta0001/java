@@ -81,9 +81,11 @@ class Library {
         }
     }
 
-    void issueBook(Book b, Member m) {
+    void issueBook(Book b, Member m) throws BookNotAvailableException {
+
         if (b.isIssued)
-            System.out.println(b.title + "is already Issued !");
+            // System.out.println(b.title + "is already Issued !");
+            throw new BookNotAvailableException(b.title + " is already Issued !");
 
         else {
             m.issuedBooks.add(b);
@@ -107,6 +109,12 @@ class Library {
     }
 }
 
+class BookNotAvailableException extends Exception {
+    BookNotAvailableException(String message) {
+        super(message);
+    }
+}
+
 public class LibraryManagementSystem {
     public static void main(String[] args) {
         Library library = new Library();
@@ -123,8 +131,17 @@ public class LibraryManagementSystem {
         library.addMember(m1);
         library.addMember(m2);
 
-        library.issueBook(b1, m1);
-        library.issueBook(b1, m2);
+        try {
+            library.issueBook(b1, m1);
+        } catch (BookNotAvailableException e) {
+            System.out.println("Error : " + e.getMessage());
+        }
+
+        try {
+            library.issueBook(b1, m2);
+        } catch (BookNotAvailableException e) {
+            System.out.println("Error : " + e.getMessage());
+        }
 
         library.returnBoook(b2, m2);
         library.returnBoook(b1, m2);
