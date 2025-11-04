@@ -30,62 +30,105 @@ listMembers()	Print all members
 
 import java.util.ArrayList;
 
-class Book{
+class Book {
     int id;
     String title;
     String author;
 
-    Book(int id, String title, String author){
+    Boolean isIssued;
+
+    Book(int id, String title, String author) {
         this.id = id;
         this.title = title;
         this.author = author;
+        this.isIssued = false;
     }
 }
 
-class Member{
+class Member {
     int id;
     String name;
 
-    Member(int id, String name){
+    ArrayList<Book> issuedBooks = new ArrayList<>();
+
+    Member(int id, String name) {
         this.id = id;
         this.name = name;
     }
 }
 
-class Library{
-    ArrayList <Book> books = new ArrayList<>();
-    ArrayList <Member> members = new ArrayList<>();
+class Library {
+    ArrayList<Book> books = new ArrayList<>();
+    ArrayList<Member> members = new ArrayList<>();
 
-    void addBook(Book book){
+    void addBook(Book book) {
         books.add(book);
     }
 
-    void addMember(Member member){
+    void addMember(Member member) {
         members.add(member);
     }
 
-    void listBooks(){
-        for(Book book : books){
+    void listBooks() {
+        for (Book book : books) {
             System.out.println(book.id + "\t" + book.title + "\t" + book.author);
         }
     }
 
-    void listMember(){
-        for(Member member : members){
+    void listMember() {
+        for (Member member : members) {
             System.out.println(member.id + "\t" + member.name);
         }
+    }
+
+    void issueBook(Book b, Member m) {
+        if (b.isIssued)
+            System.out.println(b.title + "is already Issued !");
+
+        else {
+            m.issuedBooks.add(b);
+            b.isIssued = true;
+            System.out.println(b.title + " issued to " + m.name);
+        }
+    }
+
+    void returnBoook(Book b, Member m) {
+        if (!b.isIssued)
+            System.out.println("Book is not issued to anyone");
+
+        else if (m.issuedBooks.remove(b)) {
+            b.isIssued = false;
+            System.out.println(b.title + "Returned by " + m.name);
+        }
+
+        else
+            System.out.println("Cannot return ! Book was not issued to " + m.name);
+
     }
 }
 
 public class LibraryManagementSystem {
     public static void main(String[] args) {
-        Library library  = new Library();
+        Library library = new Library();
 
-        library.addBook(new Book(1, "Let us C", "abc"));
-        library.addBook(new Book(2, "All in One Physics" ,"def"));
+        Book b1 = new Book(1, "Let us C", "abc");
+        Book b2 = new Book(2, "All in One Physics", "def");
 
-        library.addMember(new Member(1, "Arvind"));
-        library.addMember(new Member(2, "Tarun"));
+        library.addBook(b1);
+        library.addBook(b2);
+
+        Member m1 = new Member(1, "Arvind");
+        Member m2 = new Member(2, "Tarun");
+
+        library.addMember(m1);
+        library.addMember(m2);
+
+        library.issueBook(b1, m1);
+        library.issueBook(b1, m2);
+
+        library.returnBoook(b2, m2);
+        library.returnBoook(b1, m2);
+        library.returnBoook(b1, m1);
 
         library.listBooks();
         library.listMember();

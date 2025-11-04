@@ -17,7 +17,7 @@ public class ArraySecondLargest {
             }
 
             else if (max2 < arr[i])
-                    max2 = arr[i];
+                max2 = arr[i];
         }
 
         Sc.close();
