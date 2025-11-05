@@ -8,6 +8,11 @@ Add methods: deposit(), withdraw(), and checkBalance().
 
 */
 
+class InsufficientBalanceException extends Exception {
+    InsufficientBalanceException(String message) {
+        super(message);
+    }
+}
 
 class BankAccount {
     private long account_num;
@@ -51,7 +56,7 @@ class BankAccount {
         System.out.println("Balance : " + this.balance);
     }
 
-    void withdraw(long amount) {
+    void withdraw(long amount) throws InsufficientBalanceException {
         if (this.balance >= amount) {
             this.balance -= amount;
 
@@ -60,7 +65,7 @@ class BankAccount {
         }
 
         else
-            System.out.println("Withdrawl Failed, Acccount balance not sufficient");
+            throw new InsufficientBalanceException("Account balance not sufficient");
     }
 }
 
@@ -77,6 +82,16 @@ public class BankAccountSystem {
 
         System.out.println("Account Balance : " + B.getBalance());
 
-        B.withdraw(200);
+        try {
+            B.withdraw(200);
+        } catch (InsufficientBalanceException e) {
+            System.out.println("Error : " + e.getMessage());
+        }
+
+        try {
+            B.withdraw(5000);
+        } catch (InsufficientBalanceException e) {
+            System.out.println("Error : " + e.getMessage());
+        }
     }
 }
