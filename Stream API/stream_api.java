@@ -48,8 +48,25 @@ public class stream_api {
  * Suppose we create our custom Functional Interface --->
  */
 
-import java.lang.reflect.Array;
-import java.sql.Date;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* Uncomment this --->
+
+  import java.lang.reflect.Array;
+  import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -67,6 +84,18 @@ import java.util.stream.Stream;
 interface Calculate {
     int operate(int a, int b);
 }
+
+*/
+
+
+
+
+
+
+
+
+
+
 
 // Now to use it, we need to define the Abstract method [operate] in a seperate
 // class whose object will be create in publlic class to use it.
@@ -345,20 +374,20 @@ public class stream_api {
         // How to make a Streame :-
 
         // 1. From collections, using .stream() --->
-        List <Integer> l1 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-        Stream <Integer> s1 = l1.stream();
+        // List <Integer> l1 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+        // Stream <Integer> s1 = l1.stream();
 
 
         // From Arrays --->
-        String[] fruits = {"apple", "banana", "grapes"};
+        // String[] fruits = {"apple", "banana", "grapes"};
 
-        Stream <String> s2 = Arrays.stream(fruits);
+        // Stream <String> s2 = Arrays.stream(fruits);
 
 
 
         // Directly using Stream.of() --->
-        Stream <String> s3 = Stream.of("A", "B", "C");
-        Stream <Integer> s4 = Stream.of(1, 2, 3, 4);
+        // Stream <String> s3 = Stream.of("A", "B", "C");
+        // Stream <Integer> s4 = Stream.of(1, 2, 3, 4);
 
 
 
@@ -368,13 +397,13 @@ public class stream_api {
 
         // .generate() method takes a supplier as argument & creates a stream of the values given by the supplier
 
-        Stream <Integer> s5 =  Stream.generate(() -> 1);                // This will create an infinite stream of 1, we can also use .limit method to limit the no. of elements
-        Stream <Integer> s6 =  Stream.generate(() -> 1).limit(30);
+        // Stream <Integer> s5 =  Stream.generate(() -> 1);                // This will create an infinite stream of 1, we can also use .limit method to limit the no. of elements
+        // Stream <Integer> s6 =  Stream.generate(() -> 1).limit(30);
 
 
 
 
-        System.out.println(s1.filter(x -> x%2 == 0).count());
+        // System.out.println(s1.filter(x -> x%2 == 0).count());
 
 
 
