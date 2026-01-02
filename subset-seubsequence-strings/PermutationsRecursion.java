@@ -13,11 +13,6 @@ public class PermutationsRecursion {
             return;
         }
 
-        if (processed.length() == 0){
-            processed = unprocessed.substring(0, 1);
-            unprocessed = unprocessed.substring(1);
-        }
-
         for (int i = 0; i < processed.length() + 1; i++) {
             String newProcessed = processed.substring(0, i) + unprocessed.charAt(0) + processed.substring(i);
             String newUnprocessed = "";
