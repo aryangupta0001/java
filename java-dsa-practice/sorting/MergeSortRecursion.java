@@ -30,8 +30,6 @@ public class MergeSortRecursion {
 
         merge(nums, beg, mid, end);
 
-        System.out.println("");
-
     }
 
     static void merge(int[] nums, int beg, int mid, int end) {
