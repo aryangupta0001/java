@@ -4,7 +4,7 @@ import java.util.List;
 
 public class PermutationsRecursion {
     public static void main(String[] args) {
-        String str = "abc";
+        String str = "Aryan";
         String processed = "";
 
         System.out.println(permutations(processed, str));
@@ -14,15 +14,19 @@ public class PermutationsRecursion {
 
         if (unprocessed.length() == 0)
             return new ArrayList<String>(Arrays.asList(processed));
+            // return 1;
 
         List<String> ans = new ArrayList<>();
+        // int count = 0;
 
         for (int i = 0; i <= processed.length(); i++) {
             String newProcessed = processed.substring(0, i) + unprocessed.charAt(0) + processed.substring(i);
 
             ans.addAll(permutations(newProcessed, unprocessed.substring(1)));
+            // count = count + permutations(newProcessed, unprocessed.substring(1));
         }
 
         return ans;
+        // return count;
     }
 }
