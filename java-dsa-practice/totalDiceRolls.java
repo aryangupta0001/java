@@ -37,11 +37,8 @@ class totalDiceRolls {
         int ans = 0;
 
         for (int i = 1; i <= k; i++) {
-            if (i > unProcessed) {
-                // dp[n][unProcessed] = 0;
-                // return 0;
+            if (i > unProcessed)
                 break;
-            }
 
             int ways = possibleWays(processed + i, unProcessed - i, n - 1, k, dp);
 
