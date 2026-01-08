@@ -2,7 +2,6 @@ import java.util.Arrays;
 
 public class TotalPath {
     public static void main(String[] args) {
-        int[] count = new int[1];
         int r = 3;
         int c = 3;
 
@@ -11,18 +10,20 @@ public class TotalPath {
         for (int[] arr : dp)
             Arrays.fill(arr, -1);
 
-        System.out.println(countPaths(r, c, count, dp));
+        System.out.println(countPaths(r, c, dp));
     }
 
-    static int countPaths(int r, int c, int count[], int[][] dp) {
-        if (dp[r][c] > -1)
-            return dp[r][c];
+    static int countPaths(int r, int c, int[][] dp) {
+        // if (dp[r][c] > -1)
+        //     return dp[r][c];
 
         if (r == 1 || c == 1)
             return 1;
 
-        
-        dp[r][c] = countPaths(r - 1, c, count, dp) + countPaths(r, c - 1, count, dp);
-        return dp[r][c];
+        // dp[r][c] = countPaths(r - 1, c, dp) + countPaths(r, c - 1, dp) + countPaths(r - 1, c - 1, dp);
+        // return dp[r][c];
+
+        return countPaths(r - 1, c, dp) + countPaths(r, c - 1, dp) + countPaths(r - 1, c - 1, dp);
+
     }
 }

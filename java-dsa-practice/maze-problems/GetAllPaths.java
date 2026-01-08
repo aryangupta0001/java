@@ -40,6 +40,9 @@ public class GetAllPaths {
         if(c>1)
             ans.addAll(getAllPaths(r, c-1, path + " R"));
 
+        if(r>1 && c>1)
+            ans.addAll(getAllPaths(r-1, c-1, path + " d"));
+
         return ans;
     }
 }
