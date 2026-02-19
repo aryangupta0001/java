@@ -6,7 +6,7 @@
  * 
  * 
  * Lambda Expression :-
- * Lambda Expression is an anonymous function that has no name, noo return type, no access moodifier. Thet are mainly used to impplement the functional Interfaces by defining the Abstract Method directly.
+ * Lambda Expression is an anonymous function that has no name, no return type, no access moodifier. Thet are mainly used to impplement the functional Interfaces by defining the Abstract Method directly.
  * 
  * 
  * For Example, before Lambda Expressions --->
@@ -98,7 +98,7 @@ interface Calculate {
 
 
 // Now to use it, we need to define the Abstract method [operate] in a seperate
-// class whose object will be create in publlic class to use it.
+// class whose object will be created in publlic class to use it.
 
 /*
  * class addittion implements Calculate {
